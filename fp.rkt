@@ -3,8 +3,8 @@
 (define (reverse-general L)
   (if
     (null? L); if null then return nil
-    (list 'nil (display (newline)))
-    (cdr L); return the cdr
+    '()
+    (cons (reverse-general (cdr L)) (list (car L)) ); return the cons of the cdr and car
   )
   
 )
@@ -14,5 +14,5 @@
   (display "test one")(newline)
   (reverse-general testlist)
   ;(display (list L (newline)))
-  ;(reverse-general '())
+  ;(reverse-general 'nil)
 )
