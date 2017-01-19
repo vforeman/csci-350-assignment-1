@@ -3,8 +3,8 @@
 (define (reverse-general L)
   (if
     (null? L); if null then return nil
-    'nil 
-    (reverse-general (append (cdr L) (list (car L)))); else append the 1st element to the end of the list
+    (list 'nil (display (newline)))
+    L; else append the 1st element to the end of the list
   )
   
 )
@@ -13,6 +13,6 @@
 (define (test)
   (display "test one")(newline)
   (reverse-general L)
-  (display "test two")(newline)
-  (reverse-general '())
+  ;(display (list L (newline)))
+  ;(reverse-general '())
 )
