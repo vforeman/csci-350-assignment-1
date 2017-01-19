@@ -4,7 +4,9 @@
   (if
     (null? L); if null then return nil
     '()
-    (cons (reverse-general (cdr L)) (list (car L)) ); return the cons of the cdr and car
+    (
+     append (reverse-general (cdr L)) (list (car L))
+    ); return the cons of the cdr and car
   )
   
 )
