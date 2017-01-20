@@ -39,7 +39,13 @@
 )
 
 (define (sum-up-numbers-general L)
-  0
+  ;handle the empty list
+  (if (null? L)
+      0 ;if not given a list then return 0
+      (if (list? (car L))
+          (+ 0 (sum-up-numbers-simple (cdr L)));if the element is a list then add 0 to the sum of the remaining list
+          (+ (car L) (sum-up-numbers-simple (cdr L)));else add that element to the recursive sum of the remaining list
+    
 )  
 
 
@@ -51,6 +57,9 @@
 (define (test)
   ;(display "test one")(newline)
   ;(reverse-general testlist)
+  ;(display "test two")(newline)
+  ;(sum-up-numbers-simple testlist2)
   (display "test two")(newline)
-  (sum-up-numbers-simple testlist2)
+  (sum-up-numbers-general testlist2)
+
 )
