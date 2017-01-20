@@ -1,13 +1,23 @@
-(define testlist '(1 2 3 (1 2 3) 4 5 6)); test list
+(define testlist '((1 2 3) (4 5 6))); test list
 
 (define (reverse-general L)
   (if
     (null? L); if null then return nil
     '()
-    (append (reverse-general (cdr L)) (list (car L)) ); return the cons of the cdr and car
+    (if (list? (car L))
+        ;(append (reverse-general (cdr L)) (reverse-general (car L)) ); return the cons of the cdr and car
+
+        (reverse-general (car L) ); return the cons of the cdr and car
+        (append (reverse-general (cdr L)) (list (car L)) ); return the cons of the cdr and car
+
+    )
   )
   
 )
+
+(define (atom? x) 
+  (and (not (pair? x))
+       (not (null? x))))
 
 
 (define (test)
