@@ -1,5 +1,5 @@
 (define testlist '(1 2 3 (1 2 3) (4 5 6))); test list
-(define testlist2 '(100 200))
+(define testlist2 '((1 2 3) 100 200 (1 2 3)))
 
 (define (reverse-general L)
   (if
@@ -32,7 +32,7 @@
   (if (null? L)
       0 ;if null return 0
       (if (list? (car L))
-          0;if the element is a list then just return 0
+          (+ 0 (sum-up-numbers-simple (cdr L)));if the element is a list then just return 0
           (+ (car L) (sum-up-numbers-simple (cdr L)));else add that element to the recursive sume of the remaining list
       )
   )
