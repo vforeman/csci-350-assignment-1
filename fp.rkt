@@ -31,9 +31,14 @@
   ;handle the empty list
   (if (null? L)
       0 ;if null return 0
-      ()
+      (if (list? (car L))
+          0;if the element is a list then just return 0
+          (+ (car L) (sum-up-numbers-simple (cdr L)));else add that element to the recursive sume of the remaining list
+      )
   )
 )
+
+
 
 
 (define (atom? x) 
