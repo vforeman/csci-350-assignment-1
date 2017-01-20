@@ -1,4 +1,5 @@
 (define testlist '(1 2 3 (1 2 3) (4 5 6))); test list
+(define testlist2 '(100 200))
 
 (define (reverse-general L)
   (if
@@ -23,14 +24,19 @@
   
 )
 
+(define (sum-up-numbers-simple L)
+  1
+)
+
+
 (define (atom? x) 
   (and (not (pair? x))
        (not (null? x))))
 
 
 (define (test)
-  (display "test one")(newline)
-  (reverse-general testlist)
-  ;(display (list L (newline)))
-  ;(reverse-general 'nil)
+  ;(display "test one")(newline)
+  ;(reverse-general testlist)
+  (display "test two")(newline)
+  (sum-up-numbers-simple testlist2)
 )
