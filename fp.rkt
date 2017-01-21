@@ -54,10 +54,17 @@
 (define (min-above-min L1 L2)
   (if (null? L1)
       #f ; if L1 is null then return false
-      (newline)
+      ; else check if the first elements in each list are numbers
+      (cond
+        (
+         (and (number? (car L1)) (number? (car L2)));if the elements popped from the lists are both numbers
+         (if (< (car L1) (car L2)); if the first element is smaller than the second
+             
+         )
+        )
+      )
   )
 )
-
 
 
 (define (atom? x) 
