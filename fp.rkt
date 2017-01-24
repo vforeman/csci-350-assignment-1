@@ -52,27 +52,52 @@
 )  
 
 (define (min-above-min L1 L2)
- (cond
+ (cond 
    (
-    (and (number? (smallest-num-from-list-simple L1)) (number? (smallest-num-from-list-simple L2))); case: num-num
-    (if (> (smallest-num-from-list-simple L1) (smallest-num-from-list-simple L2)); if num1 < num2
-        (smallest-num-from-list-simple L1);then return num1
-        #f;else return #F
+    (and (not (null? L1)) (not (null? L2)));neither list null
+    (display "neither list is null")(newline)
+    (display (and (number? (car L1)) (number? (smallest-num-from-list-simple L2))))(newline)
+    (cond ;compare elements
+     (
+      (and (number? (car L1)) (number? (smallest-num-from-list-simple L2))); case: num-num
+          (display "num-num")(newline)
+
+      (if (> (car L1) (smallest-num-from-list-simple L2)); if num1 > num2
+         (min-above-min (append (cdr L1) (list (car L1))) L2);then cycle the first list and recall
+         (min-above-min (cdr L1) L2);else pop elem1 and recall
+       )
+      )
+     (
+      (and (number? (car L1)) (not (number? (smallest-num-from-list-simple L2)))); case: num-nan
+          (display "num-nan")(newline)
+
+      (min-above-min L1 (cdr L2));then pop elem 2 and recall
+      )
+     (
+      (and (not (number? (car L1))) (number? (smallest-num-from-list-simple L2))); case: nan-num
+          (display "nan-num")(newline)
+
+      (min-above-min (cdr L1) L2);then pop elem1 and recall
+      )
+     (
+      (and (not (number? (car L1))) (not (number? (smallest-num-from-list-simple L2)))); case: nan-nan
+          (display "nan-nan")(newline)
+
+      (min-above-min (cdr L1) (cdr L2));then pop both elems and recall
+     )
     )
    )
    (
-    (and (number? (smallest-num-from-list-simple L1)) (number? (smallest-num-from-list-simple L2))); case: num-nan
-    (smallest-num-from-list-simple L1);then return num1
+    (and (null? L1) (not (null? L2)));l1 null
+    (display "L1 is null")(newline)
+    #f
    )
    (
-    (and (number? (smallest-num-from-list-simple L1)) (number? (smallest-num-from-list-simple L2))); case: nan-num
-    (smallest-num-from-list-simple L2);else return num2
+    (and (not (null? L1)) (null? L2));l2 null
+    (display "L2 is null")(newline)
+    (smallest-num-from-list-simple L1);return the smallest elem from l1
    )
-   (
-    (and (number? (smallest-num-from-list-simple L1)) (number? (smallest-num-from-list-simple L2))); case: nan-nan
-    #f;then return #f
-   )
- ) 
+ )
 )
 
 (define (smallest-num-from-list-simple L);given a list, return the smallest num
