@@ -56,12 +56,31 @@
       #f ; if L1 is null then return false
       ; else check if the first elements in each list are numbers
       (cond
-        (
+        (;dealing with 2 numbers
          (and (number? (car L1)) (number? (car L2)));if the elements popped from the lists are both numbers
-         (if (< (car L1) (car L2)); if the first element is smaller than the second
-             (min-above-min L1 (cdr L1)); then popped the larger, second element off and recall the func
+           (display "elem 1:\t")(display (car L1))(newline)
+           (display "elem 2:\t")(display (car L2))(newline)
+           (if (< (car L1) (car L2)); if the first element is smaller than or equal to the second element
+             (min-above-min L1 (cdr L2)); then popped the larger, second element off and recall the func
              (min-above-min (cdr L1) L2);else pop the element larger,first element off and recall
-         )
+           )
+        )
+        (;dealing with only one number
+         (or (and (not (number? (car L1))) (number? (car L2)))  (and (not (number? (car L2))) (number? (car L1))))
+           (display "elem 1:\t")(display (car L1))(newline)
+           (display "elem 2:\t")(display (car L2))(newline)
+           (if (not (number? (car L1))); if the first element is not a number
+             (min-above-min (cdr L1) L2); then popped element 1
+             (min-above-min L1 (cdr L2));else pop the element 2
+           )
+          
+        )
+        (;dealing with 2 non-numbers
+         (and (not (number? (car L1))) (not (number? (car L2)))) 
+           (display "elem 1:\t")(display (car L1))(newline)
+           (display "elem 2:\t")(display (car L2))(newline)
+           (min-above-min (cdr L1) (cdr L2));pop both elements
+          
         )
       )
   )
