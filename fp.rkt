@@ -1,6 +1,6 @@
 (define testlist '(1 2 3 (1 2 3) (4 5 6))); test list
 (define testlist2 '((1 2 3) 100 200 (1 2 3)))
-(define testlist3 '(a 300 b 100 c 200 d))
+(define testlist3 '(a 300 b 200 c 200 d))
 (define testlist4 '(a 200 b 300 c 100 d))
 
 (define (reverse-general L)
@@ -56,34 +56,43 @@
    (
     (and (not (null? L1)) (not (null? L2)));neither list null
     (display "neither list is null")(newline)
-    (display (and (number? (car L1)) (number? (smallest-num-from-list-simple L2))))(newline)
+    (display L1)(newline)
+        (display L2)(newline)
+
     (cond ;compare elements
      (
       (and (number? (car L1)) (number? (smallest-num-from-list-simple L2))); case: num-num
           (display "num-num")(newline)
 
       (if (> (car L1) (smallest-num-from-list-simple L2)); if num1 > num2
-         (min-above-min (append (cdr L1) (list (car L1))) L2);then cycle the first list and recall
-         (min-above-min (cdr L1) L2);else pop elem1 and recall
+          (if (and (not (null? (cdr L1))) (number? (car (cdr L1))))
+              (if (<= (car L1) (car (cdr L1))); if l1[0] < l1[1]
+                  (min-above-min (append (cdr (cdr L1)) (list (car L1))) (list (smallest-num-from-list-simple L2)));then cycle the first list and recall
+                  (min-above-min (cdr L1) (list (smallest-num-from-list-simple L2)));else pop elem1 and recall
+              )
+              (min-above-min L1 '());else this is the last elemen in l1 so recall with l2 null
+          )
+         (min-above-min (cdr L1) (list (smallest-num-from-list-simple L2)));else pop elem1 and recall
+
        )
       )
      (
       (and (number? (car L1)) (not (number? (smallest-num-from-list-simple L2)))); case: num-nan
           (display "num-nan")(newline)
 
-      (min-above-min L1 (cdr L2));then pop elem 2 and recall
+      (min-above-min L1 '());then recall with l2 null
       )
      (
       (and (not (number? (car L1))) (number? (smallest-num-from-list-simple L2))); case: nan-num
           (display "nan-num")(newline)
 
-      (min-above-min (cdr L1) L2);then pop elem1 and recall
+      (min-above-min (cdr L1) (list (smallest-num-from-list-simple L2)));then pop elem1 and recall
       )
      (
       (and (not (number? (car L1))) (not (number? (smallest-num-from-list-simple L2)))); case: nan-nan
           (display "nan-nan")(newline)
 
-      (min-above-min (cdr L1) (cdr L2));then pop both elems and recall
+      (min-above-min (cdr L1) '());then pop both elems and recall
      )
     )
    )
