@@ -59,7 +59,8 @@
         (
          (and (number? (car L1)) (number? (car L2)));if the elements popped from the lists are both numbers
          (if (< (car L1) (car L2)); if the first element is smaller than the second
-             
+             (min-above-min L1 (cdr L1)); then popped the larger, second element off and recall the func
+             (min-above-min (cdr L1) L2);else pop the element larger,first element off and recall
          )
         )
       )
