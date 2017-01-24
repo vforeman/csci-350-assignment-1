@@ -57,7 +57,7 @@
     (and (number? (smallest-num-from-list-simple L1)) (number? (smallest-num-from-list-simple L2))); case: num-num
     (if (> (smallest-num-from-list-simple L1) (smallest-num-from-list-simple L2)); if num1 < num2
         (smallest-num-from-list-simple L1);then return num1
-        (smallest-num-from-list-simple L2);else return num2
+        #f;else return #F
     )
    )
    (
