@@ -86,6 +86,9 @@
   )
 )
 
+(define (smallest-num-from-list-simple)
+  0
+)
 
 (define (atom? x) 
   (and (not (pair? x))
