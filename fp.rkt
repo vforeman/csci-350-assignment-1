@@ -86,8 +86,20 @@
   )
 )
 
-(define (smallest-num-from-list-simple)
-  0
+(define (smallest-num-from-list-simple L);given a list, return the smallest num
+  (if (null? L)
+      #F
+      (if (not(number? (car L))) ;if the first elem is not a num
+          (smallest-num-from-list-simple (cdr L)); pop it off and recall
+          (if (null? (cdr L));else if theres only one element in the list and it is a number now
+              (car L);then return that number
+              (if (or (not (number? (car (cdr L)))) (< (car L) (car (cdr L)) ));if the 2nd elem is not a number or if the 1st elem is smaller than the 2nd elem
+                  (smallest-num-from-list-simple (append (cdr (cdr L)) (list (car L))));then append elem1 to the end and pop off the 2nd elem before recalling
+                  (smallest-num-from-list-simple (cdr L));else pop the 1st element
+              )
+          )
+      )
+  )
 )
 
 (define (atom? x) 
@@ -102,7 +114,9 @@
   ;(sum-up-numbers-simple testlist2)
   ;(display "test two")(newline)
   ;(sum-up-numbers-general testlist2)
-  (display "test three")(newline)
-  (min-above-min testlist3 testlist4)
+  ;(display "test three")(newline)
+  ;(min-above-min testlist3 testlist4)
+  (display "test four")(newline)
+  (smallest-num-from-list-simple testlist3)
 
 )
