@@ -60,9 +60,9 @@
          (and (number? (car L1)) (number? (car L2)));if the elements popped from the lists are both numbers
            (display "elem 1:\t")(display (car L1))(newline)
            (display "elem 2:\t")(display (car L2))(newline)
-           (if (< (car L1) (car L2)); if the first element is smaller than or equal to the second element
-             (min-above-min L1 (cdr L2)); then popped the larger, second element off and recall the func
-             (min-above-min (cdr L1) L2);else pop the element larger,first element off and recall
+           (if (> (car L1) (car L2)); if the first element is larger than the second element
+             (min-above-min L1 (cdr L2)); then popped the smaller, second element off and recall the func
+             (min-above-min (cdr L1) L2);else pop the smaller or equal ,first element off and recall
            )
         )
         (;dealing with only one number
